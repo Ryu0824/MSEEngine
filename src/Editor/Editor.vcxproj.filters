@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="pch.cpp">
+      <Filter>Default</Filter>
+    </ClCompile>
+    <ClCompile Include="EditorApplication.cpp">
+      <Filter>01. Application</Filter>
+    </ClCompile>
+    <ClCompile Include="EditorLayer.cpp">
+      <Filter>02. Layer</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Default">
+      <UniqueIdentifier>{98e520d3-23e1-4f81-a39f-2c2e3ab314ab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01. Application">
+      <UniqueIdentifier>{6bfea93c-0179-4294-b967-0bd5cb6cc69e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02. Layer">
+      <UniqueIdentifier>{2854ad4e-1cfe-40f5-9663-d7d97c524a3a}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="pch.h">
+      <Filter>Default</Filter>
+    </ClInclude>
+    <ClInclude Include="EditorApplication.h">
+      <Filter>01. Application</Filter>
+    </ClInclude>
+    <ClInclude Include="EditorLayer.h">
+      <Filter>02. Layer</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

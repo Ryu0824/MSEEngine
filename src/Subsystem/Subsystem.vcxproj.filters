@@ -1,0 +1,177 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Default">
+      <UniqueIdentifier>{2f0722ce-6432-4d40-a676-5c751e0af0fe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core">
+      <UniqueIdentifier>{d4e98a62-7695-495c-b30d-5613de7fd654}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Event">
+      <UniqueIdentifier>{92f18dd4-b876-4e6f-bf5e-5c5572ca080b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Platform">
+      <UniqueIdentifier>{e4914dd4-f416-493c-b11d-1ff649ad44f9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Platform\Windows">
+      <UniqueIdentifier>{89ffcd72-cdb0-46e5-a6af-415cf4bb6914}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Renderer">
+      <UniqueIdentifier>{d7d66a75-cd95-413b-a8b0-7f1e25fa7dc6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Platform\DirectX11">
+      <UniqueIdentifier>{ee93df46-8d83-43fc-bb0f-7b05d1ae3d0f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Assets">
+      <UniqueIdentifier>{90973b24-3d2d-4e34-91ef-9ad285e8a2f7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Assets\Shaders">
+      <UniqueIdentifier>{b40cf568-1466-4edf-acef-d8efcf92bbfb}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="pch.h">
+      <Filter>Default</Filter>
+    </ClInclude>
+    <ClInclude Include="Singleton.h">
+      <Filter>Default</Filter>
+    </ClInclude>
+    <ClInclude Include="Base.h">
+      <Filter>Default</Filter>
+    </ClInclude>
+    <ClInclude Include="Subsystem.h">
+      <Filter>Default</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Application.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Input.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Layer.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\LayerStack.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Event\ApplicationEvent.h">
+      <Filter>Event</Filter>
+    </ClInclude>
+    <ClInclude Include="Event\Event.h">
+      <Filter>Event</Filter>
+    </ClInclude>
+    <ClInclude Include="Event\KeyEvent.h">
+      <Filter>Event</Filter>
+    </ClInclude>
+    <ClInclude Include="Event\MouseEvent.h">
+      <Filter>Event</Filter>
+    </ClInclude>
+    <ClInclude Include="Platform\Windows\WindowsWindow.h">
+      <Filter>Platform\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Window.h">
+      <Filter>Default</Filter>
+    </ClInclude>
+    <ClInclude Include="EntryPoint.h">
+      <Filter>Default</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderer\GraphicsContext.h">
+      <Filter>Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="Platform\DirectX11\DirectX11Context.h">
+      <Filter>Platform\DirectX11</Filter>
+    </ClInclude>
+    <ClInclude Include="Logger.h">
+      <Filter>Default</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Timestep.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderer\Shader.h">
+      <Filter>Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="Platform\DirectX11\DirectX11Shader.h">
+      <Filter>Platform\DirectX11</Filter>
+    </ClInclude>
+    <ClInclude Include="Platform\DirectX11\DirectX11Buffer.h">
+      <Filter>Platform\DirectX11</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderer\Buffer.h">
+      <Filter>Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderer\RendererAPI.h">
+      <Filter>Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderer\RenderCommand.h">
+      <Filter>Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderer\Renderer.h">
+      <Filter>Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="Platform\DirectX11\DirectX11RendererAPI.h">
+      <Filter>Platform\DirectX11</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderer\VertexArray.h">
+      <Filter>Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="Platform\DirectX11\DirectX11VertexArray.h">
+      <Filter>Platform\DirectX11</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="pch.cpp">
+      <Filter>Default</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\Application.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\LayerStack.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Platform\Windows\WindowsInput.cpp">
+      <Filter>Platform\Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="Platform\Windows\WindowsWindow.cpp">
+      <Filter>Platform\Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="Platform\DirectX11\DirectX11Context.cpp">
+      <Filter>Platform\DirectX11</Filter>
+    </ClCompile>
+    <ClCompile Include="Platform\DirectX11\DirectX11Shader.cpp">
+      <Filter>Platform\DirectX11</Filter>
+    </ClCompile>
+    <ClCompile Include="Platform\DirectX11\DirectX11Buffer.cpp">
+      <Filter>Platform\DirectX11</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderer\RendererAPI.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderer\Renderer.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="Platform\DirectX11\DirectX11RendererAPI.cpp">
+      <Filter>Platform\DirectX11</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderer\RenderCommand.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderer\Buffer.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderer\Shader.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="Platform\DirectX11\DirectX11VertexArray.cpp">
+      <Filter>Platform\DirectX11</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderer\VertexArray.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="cpp.hint" />
+    <None Include="..\..\assets\Shaders\Basic.hlsl">
+      <Filter>Assets\Shaders</Filter>
+    </None>
+  </ItemGroup>
+</Project>

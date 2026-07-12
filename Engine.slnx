@@ -1,0 +1,13 @@
+<Solution>
+  <Configurations>
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Project Path="src/Editor/Editor.vcxproj" Id="92436a29-f1fc-461f-bb52-567350d22fb5">
+    <BuildDependency Project="src/Subsystem/Subsystem.vcxproj" />
+  </Project>
+  <Project Path="src/Game/Game.vcxproj" Id="db880bbe-4550-43a5-87b3-6a74dc31827a">
+    <BuildDependency Project="src/Subsystem/Subsystem.vcxproj" />
+  </Project>
+  <Project Path="src/Subsystem/Subsystem.vcxproj" Id="2074f32c-3ef1-429c-bb35-c3e47bed9bc3" />
+</Solution>
