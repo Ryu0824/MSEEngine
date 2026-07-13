@@ -180,6 +180,11 @@
     <ClInclude Include="Renderer\RendererAPI.h" />
     <ClInclude Include="Renderer\Shader.h" />
     <ClInclude Include="Renderer\VertexArray.h" />
+    <ClInclude Include="Scene\Actor.h" />
+    <ClInclude Include="Scene\Component.h" />
+    <ClInclude Include="Scene\Components.h" />
+    <ClInclude Include="Scene\MeshComponent.h" />
+    <ClInclude Include="Scene\Scene.h" />
     <ClInclude Include="Singleton.h" />
     <ClInclude Include="Subsystem.h" />
   </ItemGroup>

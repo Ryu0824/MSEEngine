@@ -12,6 +12,5 @@ public:
 	virtual void OnEvent(MSE::Event& event)		override;
 
 private:
-	std::shared_ptr<MSE::Shader> m_Shader;
-	std::shared_ptr<MSE::VertexArray> m_VertexArray;
+	std::shared_ptr<MSE::Scene> m_ActiveScene;
 };

@@ -3,7 +3,9 @@
 
 void EditorLayer::OnAttach()
 {
-	m_VertexArray = MSE::VertexArray::Create();
+	m_ActiveScene = std::make_shared<MSE::Scene>();
+
+	std::shared_ptr<MSE::VertexArray> vertexArray = MSE::VertexArray::Create();
 
 	float vertices[] = {
 		-0.5f,0.5f,0.0f, 1.0f,0.0f,0.0f,1.0f,
@@ -22,15 +24,17 @@ void EditorLayer::OnAttach()
 		{MSE::ShaderDataType::Float4,"COLOR"}
 	};
 	vertexBuffer->SetLayout(layout);
-
-	m_VertexArray->AddVertexBuffer(vertexBuffer);
+	vertexArray->AddVertexBuffer(vertexBuffer);
 
 	uint32_t indices[] = { 0,1,2,0,2,3 };
 	std::shared_ptr<MSE::IndexBuffer> indexBuffer = MSE::IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t));
+	vertexArray->SetIndexBuffer(indexBuffer);
 
-	m_VertexArray->SetIndexBuffer(indexBuffer);
+	std::shared_ptr<MSE::Shader> shader = MSE::Shader::Create(L"Assets/Shaders/Basic.hlsl");
 
-	m_Shader = MSE::Shader::Create(L"Assets/Shaders/Basic.hlsl");
+	auto player = m_ActiveScene->CreateActor("Player");
+
+	player->AddComponents<MSE::MeshComponent>(vertexArray, shader);
 }
 
 void EditorLayer::OnDetach()
@@ -46,7 +50,7 @@ void EditorLayer::OnUpdate(MSE::Timestep ts)
 
 	MSE::Renderer::BeginScene();
 
-	MSE::Renderer::Submit(m_Shader, m_VertexArray);
+	m_ActiveScene->OnUpdate(ts);
 
 	MSE::Renderer::EndScene();
 }

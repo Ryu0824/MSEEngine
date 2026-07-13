@@ -28,6 +28,9 @@
     <Filter Include="Assets\Shaders">
       <UniqueIdentifier>{b40cf568-1466-4edf-acef-d8efcf92bbfb}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Scene">
+      <UniqueIdentifier>{04ce33d6-7a5f-497d-9791-ddfd52b5ac33}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
@@ -116,6 +119,21 @@
     </ClInclude>
     <ClInclude Include="Platform\DirectX11\DirectX11VertexArray.h">
       <Filter>Platform\DirectX11</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\Component.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\Actor.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\Scene.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\Components.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\MeshComponent.h">
+      <Filter>Scene</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

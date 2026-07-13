@@ -17,4 +17,10 @@
 #include <Renderer/Shader.h>
 #include <Renderer/VertexArray.h>
 
+#include <Scene/Scene.h>
+#include <Scene/Actor.h>
+#include <Scene/Component.h>
+#include <Scene/Components.h>
+
+
 #include "EntryPoint.h"
