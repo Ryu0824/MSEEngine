@@ -4,5 +4,5 @@
 
 namespace MSE
 {
-	std::unique_ptr<RendererAPI> RenderCommand::s_RendererAPI = std::make_unique<DirectX11RendererAPI>();
+	Scope<RendererAPI> RenderCommand::s_RendererAPI = CreateScope<DirectX11RendererAPI>();
 }

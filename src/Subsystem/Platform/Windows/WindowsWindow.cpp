@@ -176,7 +176,8 @@ namespace MSE
 
 		ShowWindow(hwnd, SW_SHOW);
 
-		m_Context = std::make_unique<DirectX11Context>(static_cast<HWND>(m_WindowHandle));
+		m_Context = CreateScope<DirectX11Context>(static_cast<HWND>(m_WindowHandle));
+	
 		m_Context->Init();
 	}
 

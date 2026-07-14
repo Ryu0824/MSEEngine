@@ -20,15 +20,15 @@ namespace MSE
 			}
 		}
 
-		std::shared_ptr<Actor> CreateActor(const std::string& name = "Actor")
+		Ref<Actor> CreateActor(const std::string& name = "Actor")
 		{
-			auto actor = std::make_shared<Actor>(name);
+			auto actor = CreateRef<Actor>(name);
 			actor->m_Scene = this;
 			m_Actors.push_back(actor);
 			return actor;
 		}
 
 	private:
-		std::vector<std::shared_ptr<Actor>> m_Actors;
+		std::vector<Ref<Actor>> m_Actors;
 	};
 }

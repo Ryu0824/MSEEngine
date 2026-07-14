@@ -25,7 +25,7 @@ namespace MSE
 		virtual void Init(const WindowProps& props);
 		virtual void Shutdown();
 
-		std::unique_ptr<GraphicsContext> m_Context;
+		Scope<GraphicsContext> m_Context;
 
 	private:
 		struct WindowData

@@ -14,6 +14,6 @@ namespace MSE
 
 		virtual void BindLayout(const BufferLayout& layout) = 0;
 
-		static std::shared_ptr<Shader> Create(const std::wstring& filepath);
+		static Ref<Shader> Create(const std::wstring& filepath);
 	};
 }

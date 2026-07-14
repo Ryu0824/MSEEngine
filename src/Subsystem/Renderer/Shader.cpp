@@ -5,12 +5,12 @@
 
 namespace MSE
 {
-	std::shared_ptr<Shader> Shader::Create(const std::wstring& filepath)
+	Ref<Shader> Shader::Create(const std::wstring& filepath)
 	{
 		switch (RendererAPI::GetAPI())
 		{
 		case RendererAPI::API::None:return nullptr;
-		case RendererAPI::API::DirectX11:return std::make_shared<DirectX11Shader>(filepath);
+		case RendererAPI::API::DirectX11:return CreateRef<DirectX11Shader>(filepath);
 		}
 		return nullptr;
 	}

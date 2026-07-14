@@ -23,7 +23,7 @@ namespace MSE
 		}
 
 	private:
-		static std::unique_ptr<RendererAPI> s_RendererAPI;
+		static Scope<RendererAPI> s_RendererAPI;
 	};
 
 }

@@ -10,11 +10,11 @@ namespace MSE
 	class MeshComponent :public Component
 	{
 	public:
-		std::shared_ptr<VertexArray> m_VertexArray;
-		std::shared_ptr<Shader> m_Shader;
+		Ref<VertexArray> m_VertexArray;
+		Ref<Shader> m_Shader;
 
 		MeshComponent() = default;
-		MeshComponent(const std::shared_ptr<VertexArray>& vertexArray, const std::shared_ptr<Shader>& shader)
+		MeshComponent(const Ref<VertexArray>& vertexArray, const Ref<Shader>& shader)
 			:m_VertexArray(vertexArray), m_Shader(shader) {}
 
 		virtual void OnUpdate(Timestep ts)override

@@ -25,9 +25,9 @@ namespace MSE
 		const std::string& GetName() const { return m_Name; }
 
 		template<typename T, typename... Args>
-		std::shared_ptr<T> AddComponents(Args&&... args)
+		Ref<T> AddComponents(Args&&... args)
 		{
-			auto component = std::make_shared<T>(std::forward<Args>(args)...);
+			auto component = CreateRef<T>(std::forward<Args>(args)...);
 
 			component->m_Owner = this;
 
@@ -39,7 +39,7 @@ namespace MSE
 		}
 
 		template<typename T>
-		std::shared_ptr<T> GetComponent()
+		Ref<T> GetComponent()
 		{
 			auto it = m_ComponentMap.find(typeid(T));
 			if (it != m_ComponentMap.end())
@@ -51,8 +51,8 @@ namespace MSE
 		std::string m_Name;
 		Scene* m_Scene = nullptr;
 
-		std::vector<std::shared_ptr<Component>> m_Components;
-		std::unordered_map<std::type_index, std::shared_ptr<Component>> m_ComponentMap;
+		std::vector<Ref<Component>> m_Components;
+		std::unordered_map<std::type_index, Ref<Component>> m_ComponentMap;
 
 		friend class Scene;
 	};

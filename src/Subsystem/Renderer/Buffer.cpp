@@ -11,7 +11,7 @@ namespace MSE
 		switch (RendererAPI::GetAPI())
 		{
 		case RendererAPI::API::None:return nullptr;
-		case RendererAPI::API::DirectX11: return std::make_shared<DirectX11VertexBuffer>(vertices, size);
+		case RendererAPI::API::DirectX11: return CreateRef<DirectX11VertexBuffer>(vertices, size);
 		}
 		return nullptr;
 	}
@@ -21,7 +21,7 @@ namespace MSE
 		switch (RendererAPI::GetAPI())
 		{
 		case RendererAPI::API::None:return nullptr;
-		case RendererAPI::API::DirectX11: return std::make_shared<DirectX11IndexBuffer>(indices, count);
+		case RendererAPI::API::DirectX11: return CreateRef<DirectX11IndexBuffer>(indices, count);
 		}
 		return nullptr;
 	}

@@ -5,12 +5,12 @@
 
 namespace MSE
 {
-	std::shared_ptr<VertexArray> VertexArray::Create()
+	Ref<VertexArray> VertexArray::Create()
 	{
 		switch (RendererAPI::GetAPI())
 		{
 		case RendererAPI::API::None: return nullptr;
-		case RendererAPI::API::DirectX11: return std::make_shared<DirectX11VertexArray>();
+		case RendererAPI::API::DirectX11: return CreateRef<DirectX11VertexArray>();
 		}
 
 		return nullptr;
