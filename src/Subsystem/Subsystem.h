@@ -16,6 +16,7 @@
 #include <Renderer/Buffer.h>
 #include <Renderer/Shader.h>
 #include <Renderer/VertexArray.h>
+#include <Renderer/Texture.h>
 
 #include <Scene/Scene.h>
 #include <Scene/Actor.h>

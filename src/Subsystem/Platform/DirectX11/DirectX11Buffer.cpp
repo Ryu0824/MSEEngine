@@ -53,4 +53,30 @@ namespace MSE
 	void DirectX11IndexBuffer::Unbind() const
 	{
 	}
+
+	DirectX11ConstantBuffer::DirectX11ConstantBuffer(uint32_t size)
+	{
+		D3D11_BUFFER_DESC bd = {};
+		bd.Usage = D3D11_USAGE_DYNAMIC;
+
+		bd.ByteWidth = size + (16 - (size % 16)) % 16;
+
+		bd.BindFlags = D3D11_BIND_CONSTANT_BUFFER;
+		bd.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
+
+		g_Device->CreateBuffer(&bd, nullptr, &m_Buffer);
+	}
+
+	void DirectX11ConstantBuffer::Bind(uint32_t slot) const
+	{
+		g_DeviceContext->VSSetConstantBuffers(slot, 1, m_Buffer.GetAddressOf());
+	}
+
+	void DirectX11ConstantBuffer::SetData(const void* data, uint32_t size)
+	{
+		D3D11_MAPPED_SUBRESOURCE mappedResource;
+		g_DeviceContext->Map(m_Buffer.Get(), 0, D3D11_MAP_WRITE_DISCARD, 0, &mappedResource);
+		memcpy(mappedResource.pData, data, size);
+		g_DeviceContext->Unmap(m_Buffer.Get(), 0);
+	}
 }

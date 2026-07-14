@@ -31,6 +31,12 @@
     <Filter Include="Scene">
       <UniqueIdentifier>{04ce33d6-7a5f-497d-9791-ddfd52b5ac33}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Vendor">
+      <UniqueIdentifier>{e84ed326-b81b-4911-9d05-ee71e81a1f7a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Vendor\stb_image">
+      <UniqueIdentifier>{2f4d9c61-051b-447a-ba28-679c65496b9a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
@@ -135,6 +141,21 @@
     <ClInclude Include="Scene\MeshComponent.h">
       <Filter>Scene</Filter>
     </ClInclude>
+    <ClInclude Include="Scene\TransformComponent.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\CameraComponent.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Vendor\stb_image\stb_image.h">
+      <Filter>Vendor\stb_image</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderer\Texture.h">
+      <Filter>Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="Platform\DirectX11\DirectX11Texture2D.h">
+      <Filter>Platform\DirectX11</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -184,6 +205,15 @@
     </ClCompile>
     <ClCompile Include="Renderer\VertexArray.cpp">
       <Filter>Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="Vendor\stb_image\stb_image.cpp">
+      <Filter>Vendor\stb_image</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderer\Texture.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="Platform\DirectX11\DirectX11Texture2D.cpp">
+      <Filter>Platform\DirectX11</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

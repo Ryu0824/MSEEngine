@@ -106,4 +106,15 @@ namespace MSE
 
 		static Ref<IndexBuffer> Create(uint32_t* indices, uint32_t count);
 	};
+
+	class ConstantBuffer
+	{
+	public:
+		virtual ~ConstantBuffer() = default;
+
+		virtual void Bind(uint32_t slot = 0) const = 0;
+		virtual void SetData(const void* data, uint32_t size) = 0;
+
+		static Ref<ConstantBuffer> Create(uint32_t size);
+	};
 }

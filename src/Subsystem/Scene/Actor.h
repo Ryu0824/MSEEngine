@@ -25,7 +25,7 @@ namespace MSE
 		const std::string& GetName() const { return m_Name; }
 
 		template<typename T, typename... Args>
-		Ref<T> AddComponents(Args&&... args)
+		Ref<T> AddComponent(Args&&... args)
 		{
 			auto component = CreateRef<T>(std::forward<Args>(args)...);
 

@@ -1,40 +1,55 @@
 #include "pch.h"
 #include "EditorLayer.h"
+#include <Scene/Components.h>
+#include <DirectXMath.h>
 
 void EditorLayer::OnAttach()
 {
-	m_ActiveScene = std::make_shared<MSE::Scene>();
+	m_ActiveScene = MSE::CreateRef<MSE::Scene>();
 
-	std::shared_ptr<MSE::VertexArray> vertexArray = MSE::VertexArray::Create();
+	MSE::Ref<MSE::VertexArray> vertexArray = MSE::VertexArray::Create();
 
 	float vertices[] = {
-		-0.5f,0.5f,0.0f, 1.0f,0.0f,0.0f,1.0f,
+		-0.5f,0.5f,0.0f, 1.0f,0.0f,0.0f,1.0f, 0.0f,0.0f,
 
-		0.5f, 0.5f,0.0f, 0.0,1.0f,0.0f,1.0f,
+		0.5f, 0.5f,0.0f, 0.0,1.0f,0.0f,1.0f, 1.0f,0.0f,
 
-		0.5f,-0.5f,0.0f, 0.0f,0.0f,1.0f,1.0f,
+		0.5f,-0.5f,0.0f, 0.0f,0.0f,1.0f,1.0f, 1.0f,1.0f,
 
-		-0.5f,-0.5f,0.0f, 0.0f,1.0f,1.0f,1.0f
+		-0.5f,-0.5f,0.0f, 0.0f,1.0f,1.0f,1.0f, 0.0f,1.0f
 	};
-	
-	std::shared_ptr<MSE::VertexBuffer> vertexBuffer = MSE::VertexBuffer::Create(vertices, sizeof(vertices));
+
+	MSE::Ref<MSE::VertexBuffer> vertexBuffer = MSE::VertexBuffer::Create(vertices, sizeof(vertices));
 
 	MSE::BufferLayout layout = {
 		{MSE::ShaderDataType::Float3,"POSITION"},
-		{MSE::ShaderDataType::Float4,"COLOR"}
+		{MSE::ShaderDataType::Float4,"COLOR"},
+		{MSE::ShaderDataType::Float2, "TEXCOORD"}
 	};
 	vertexBuffer->SetLayout(layout);
 	vertexArray->AddVertexBuffer(vertexBuffer);
 
 	uint32_t indices[] = { 0,1,2,0,2,3 };
-	std::shared_ptr<MSE::IndexBuffer> indexBuffer = MSE::IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t));
+	MSE::Ref<MSE::IndexBuffer> indexBuffer = MSE::IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t));
 	vertexArray->SetIndexBuffer(indexBuffer);
 
-	std::shared_ptr<MSE::Shader> shader = MSE::Shader::Create(L"Assets/Shaders/Basic.hlsl");
+	MSE::Ref<MSE::Shader> shader = MSE::Shader::Create(L"Assets/Shaders/Basic.hlsl");
 
-	auto player = m_ActiveScene->CreateActor("Player");
+	m_Texture = MSE::Texture2D::Create("Assets/Textures/TestImage.png");
+	if (m_Texture) m_Texture->Bind(0);
 
-	player->AddComponents<MSE::MeshComponent>(vertexArray, shader);
+	m_CameraCB = MSE::ConstantBuffer::Create(sizeof(DirectX::XMMATRIX));
+	m_TransformCB = MSE::ConstantBuffer::Create(sizeof(DirectX::XMMATRIX));
+
+	m_Player = m_ActiveScene->CreateActor("Player");
+	m_Player->AddComponent<MSE::MeshComponent>(vertexArray, shader);
+	m_Player->AddComponent<MSE::TransformComponent>();
+
+	m_Camera = m_ActiveScene->CreateActor("Camera");
+	auto camTransform = m_Camera->AddComponent<MSE::TransformComponent>();
+	m_Camera->AddComponent<MSE::CameraComponent>();
+	
+	camTransform->Translation.z = -5.0f;	
 }
 
 void EditorLayer::OnDetach()
@@ -44,6 +59,36 @@ void EditorLayer::OnDetach()
 
 void EditorLayer::OnUpdate(MSE::Timestep ts)
 {
+	auto transform = m_Camera->GetComponent<MSE::TransformComponent>();
+	auto camera = m_Camera->GetComponent<MSE::CameraComponent>();
+
+	auto playerTransform = m_Player->GetComponent<MSE::TransformComponent>();
+
+	float moveSpeed = 2.0f;
+	float rotSpeed = 3.0f;
+
+	if (MSE::Input::IsKeyPressed('A')) transform->Translation.x -= moveSpeed * ts;
+	if (MSE::Input::IsKeyPressed('D')) transform->Translation.x += moveSpeed * ts;
+	if (MSE::Input::IsKeyPressed('W')) transform->Translation.y += moveSpeed * ts;
+	if (MSE::Input::IsKeyPressed('S')) transform->Translation.y -= moveSpeed * ts;
+	if (MSE::Input::IsKeyPressed('Z')) transform->Translation.z -= moveSpeed * ts;
+	if (MSE::Input::IsKeyPressed('X')) transform->Translation.z += moveSpeed * ts;
+
+	if (MSE::Input::IsKeyPressed('Q')) transform->Rotation.z += rotSpeed * ts;
+	if (MSE::Input::IsKeyPressed('E')) transform->Rotation.z -= rotSpeed * ts;
+
+	DirectX::XMMATRIX CamViewMatrix = transform->GetCameraViewMatrix();
+	DirectX::XMMATRIX CamProjectionViewMatrix = camera->GetProjectionMatrix();
+
+	DirectX::XMMATRIX camtransposed = DirectX::XMMatrixTranspose(CamViewMatrix * CamProjectionViewMatrix);
+	DirectX::XMMATRIX playerTransposed = DirectX::XMMatrixTranspose(playerTransform->GetTransform());
+
+	m_CameraCB->SetData(&camtransposed, sizeof(DirectX::XMMATRIX));
+	m_CameraCB->Bind(0);
+
+	m_TransformCB->SetData(&playerTransposed, sizeof(DirectX::XMMATRIX));
+	m_TransformCB->Bind(1);
+
 	float clearColor[4] = { 0.2f,0.2f,0.2f,1.0f };
 	MSE::RenderCommand::SetClearColor(clearColor);
 	MSE::RenderCommand::Clear();

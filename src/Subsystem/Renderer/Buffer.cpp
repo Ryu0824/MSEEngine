@@ -6,7 +6,7 @@
 
 namespace MSE
 {
-	std::shared_ptr<VertexBuffer> VertexBuffer::Create(float* vertices, uint32_t size)
+	Ref<VertexBuffer> VertexBuffer::Create(float* vertices, uint32_t size)
 	{
 		switch (RendererAPI::GetAPI())
 		{
@@ -16,12 +16,22 @@ namespace MSE
 		return nullptr;
 	}
 
-	std::shared_ptr<IndexBuffer> IndexBuffer::Create(uint32_t* indices, uint32_t count)
+	Ref<IndexBuffer> IndexBuffer::Create(uint32_t* indices, uint32_t count)
 	{
 		switch (RendererAPI::GetAPI())
 		{
 		case RendererAPI::API::None:return nullptr;
 		case RendererAPI::API::DirectX11: return CreateRef<DirectX11IndexBuffer>(indices, count);
+		}
+		return nullptr;
+	}
+
+	Ref<ConstantBuffer> ConstantBuffer::Create(uint32_t size)
+	{
+		switch (RendererAPI::GetAPI())
+		{
+		case RendererAPI::API::None:return nullptr;
+		case RendererAPI::API::DirectX11: return CreateRef<DirectX11ConstantBuffer>(size);
 		}
 		return nullptr;
 	}

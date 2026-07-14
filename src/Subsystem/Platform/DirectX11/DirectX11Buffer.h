@@ -37,4 +37,17 @@ namespace MSE
 		Microsoft::WRL::ComPtr<ID3D11Buffer> m_Buffer;
 		uint32_t m_Count;
 	};
+
+	class DirectX11ConstantBuffer :public ConstantBuffer
+	{
+	public:
+		DirectX11ConstantBuffer(uint32_t size);
+		virtual ~DirectX11ConstantBuffer() = default;
+
+		virtual void Bind(uint32_t slot = 0) const override;
+		virtual void SetData(const void* data, uint32_t size) override;
+
+	private:
+		Microsoft::WRL::ComPtr<ID3D11Buffer> m_Buffer;
+	};
 }

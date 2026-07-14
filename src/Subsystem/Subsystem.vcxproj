@@ -171,6 +171,7 @@
     <ClInclude Include="Platform\DirectX11\DirectX11Context.h" />
     <ClInclude Include="Platform\DirectX11\DirectX11RendererAPI.h" />
     <ClInclude Include="Platform\DirectX11\DirectX11Shader.h" />
+    <ClInclude Include="Platform\DirectX11\DirectX11Texture2D.h" />
     <ClInclude Include="Platform\DirectX11\DirectX11VertexArray.h" />
     <ClInclude Include="Platform\Windows\WindowsWindow.h" />
     <ClInclude Include="Renderer\Buffer.h" />
@@ -179,14 +180,18 @@
     <ClInclude Include="Renderer\Renderer.h" />
     <ClInclude Include="Renderer\RendererAPI.h" />
     <ClInclude Include="Renderer\Shader.h" />
+    <ClInclude Include="Renderer\Texture.h" />
     <ClInclude Include="Renderer\VertexArray.h" />
     <ClInclude Include="Scene\Actor.h" />
+    <ClInclude Include="Scene\CameraComponent.h" />
     <ClInclude Include="Scene\Component.h" />
     <ClInclude Include="Scene\Components.h" />
     <ClInclude Include="Scene\MeshComponent.h" />
     <ClInclude Include="Scene\Scene.h" />
+    <ClInclude Include="Scene\TransformComponent.h" />
     <ClInclude Include="Singleton.h" />
     <ClInclude Include="Subsystem.h" />
+    <ClInclude Include="Vendor\stb_image\stb_image.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Core\Application.cpp" />
@@ -199,6 +204,7 @@
     <ClCompile Include="Platform\DirectX11\DirectX11Context.cpp" />
     <ClCompile Include="Platform\DirectX11\DirectX11RendererAPI.cpp" />
     <ClCompile Include="Platform\DirectX11\DirectX11Shader.cpp" />
+    <ClCompile Include="Platform\DirectX11\DirectX11Texture2D.cpp" />
     <ClCompile Include="Platform\DirectX11\DirectX11VertexArray.cpp" />
     <ClCompile Include="Platform\Windows\WindowsInput.cpp" />
     <ClCompile Include="Platform\Windows\WindowsWindow.cpp" />
@@ -207,7 +213,9 @@
     <ClCompile Include="Renderer\Renderer.cpp" />
     <ClCompile Include="Renderer\RendererAPI.cpp" />
     <ClCompile Include="Renderer\Shader.cpp" />
+    <ClCompile Include="Renderer\Texture.cpp" />
     <ClCompile Include="Renderer\VertexArray.cpp" />
+    <ClCompile Include="Vendor\stb_image\stb_image.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="cpp.hint" />
