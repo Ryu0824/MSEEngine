@@ -1,21 +1,32 @@
 #pragma once
+extern MSE::Application* MSE::CreateApplication();
+
 #ifdef _WIN32
 #include <Platform/Windows/WindowsWindow.h>
 #include <Windows.h>
+#define _CRTDBG_MAP_ALLOC
+#include <stdlib.h>
+#include <crtdbg.h>
+#endif
 
-extern MSE::Application* MSE::CreateApplication();
-
-int WINAPI WinMain(_In_ HINSTANCE hInstance,
-	_In_opt_ HINSTANCE hPrevInstance,
-	_In_ LPSTR lpCmdLine,
-	_In_ int nShowCmd)
+int main(int argc, char** argv)
 {
-	auto app = MSE::CreateApplication();
+#if defined(_WIN32) && defined(_DEBUG)
+    _CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
+#endif
 
-	app->Run();
+    auto app = MSE::CreateApplication();
 
-	delete app;
+    app->Run();
 
-	return 0;
+    delete app;
+    return 0;
+}
+
+#ifdef _WIN32
+#include <windows.h>
+int APIENTRY WinMain(HINSTANCE hInst, HINSTANCE hInstPrev, PSTR cmdline, int cmdshow)
+{
+    return main(__argc, __argv);
 }
 #endif
