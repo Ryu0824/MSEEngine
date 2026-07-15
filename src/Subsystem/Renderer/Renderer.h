@@ -19,5 +19,7 @@ namespace MSE
 		static void Submit(const Ref<Shader>& shader,
 			const Ref<VertexArray>&  vertexArray,
 			const DirectX::XMMATRIX& transform);
+
+		static void OnWindowResize(uint32_t width, uint32_t height);
 	};
 }

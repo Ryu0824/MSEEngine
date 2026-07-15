@@ -16,6 +16,8 @@ namespace MSE
 		virtual void Init() override;
 		virtual void SwapBuffers() override;
 
+		virtual void Resize(uint32_t width, uint32_t height) override;
+
 	private:
 		HWND m_WindowHandle;
 

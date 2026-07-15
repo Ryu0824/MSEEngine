@@ -12,8 +12,10 @@ namespace MSE
 		m_Instance = this;
 
 		m_Window = std::unique_ptr<Window>(Window::Create());
-
 		m_Window->SetEventCallback([this](Event& e) {this->OnEvent(e); });
+
+		m_Context = GraphicsContext::Create(m_Window->GetNativeWindow());
+		m_Context->Init();
 
 		m_ImGuiLayer = new ImGuiLayer;
 		PushOverlay(m_ImGuiLayer);
@@ -62,7 +64,7 @@ namespace MSE
 
 		m_Minimized = false;
 
-		//Renderer::OnWindowResize(e.GetWidth(),e.GetHeight());
+		m_Context->Resize(e.GetWidth(), e.GetHeight());
 
 		return false;
 	}
@@ -90,6 +92,8 @@ namespace MSE
 					layer->OnImGuiRender();
 
 				m_ImGuiLayer->End();
+
+				m_Context->SwapBuffers();
 			}
 
 			m_Window->OnUpdate();

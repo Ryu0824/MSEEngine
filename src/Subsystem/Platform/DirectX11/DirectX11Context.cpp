@@ -102,4 +102,44 @@ namespace MSE
 	{
 		m_SwapChain->Present(1, 0);
 	}
+
+	void DirectX11Context::Resize(uint32_t width, uint32_t height)
+	{
+		if (width == 0 || height == 0)return;
+
+		m_DeviceContext->OMSetRenderTargets(0, nullptr, nullptr);
+
+		m_RenderTargetView.Reset();
+		m_DepthStencilView.Reset();
+		m_DepthStencilBuffer.Reset();
+
+		g_RenderTargetView.Reset();
+		g_DepthStencilView.Reset();
+
+		m_SwapChain->ResizeBuffers(1, width, height, DXGI_FORMAT_R8G8B8A8_UNORM, 0);
+
+		Microsoft::WRL::ComPtr<ID3D11Texture2D> backBuffer;
+		m_SwapChain->GetBuffer(0, __uuidof(ID3D11Texture2D), (void**)&backBuffer);
+		m_Device->CreateRenderTargetView(backBuffer.Get(), nullptr, &m_RenderTargetView);
+
+		D3D11_TEXTURE2D_DESC depthDesc = {};
+		depthDesc.Width = width;
+		depthDesc.Height = height;
+		depthDesc.MipLevels = 1;
+		depthDesc.ArraySize = 1;
+		depthDesc.Format = DXGI_FORMAT_D24_UNORM_S8_UINT;
+		depthDesc.SampleDesc.Count = 1;
+		depthDesc.Usage = D3D11_USAGE_DEFAULT;
+		depthDesc.BindFlags = D3D11_BIND_DEPTH_STENCIL;
+
+		m_Device->CreateTexture2D(&depthDesc, nullptr, &m_DepthStencilBuffer);
+		m_Device->CreateDepthStencilView(m_DepthStencilBuffer.Get(), nullptr, &m_DepthStencilView);
+
+		g_RenderTargetView = m_RenderTargetView;
+		g_DepthStencilView = m_DepthStencilView;
+		m_DeviceContext->OMSetRenderTargets(1, m_RenderTargetView.GetAddressOf(), m_DepthStencilView.Get());
+
+		D3D11_VIEWPORT vp = { 0.0f, 0.0f, (float)width, (float)height, 0.0f, 1.0f };
+		m_DeviceContext->RSSetViewports(1, &vp);
+	}
 }

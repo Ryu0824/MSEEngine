@@ -28,7 +28,7 @@ namespace MSE
 		POINT pos;
 		GetCursorPos(&pos);
 
-		HWND hWnd = static_cast<HWND>(Application::GetInstance().GetWindow().GetNativeWindow());
+		HWND hWnd = static_cast<HWND>(Application::GetInstance().GetWindow().GetNativeWindow().WindowHandle);
 		ScreenToClient(hWnd, &pos);
 
 		return { static_cast<float>(pos.x),static_cast<float>(pos.y) };

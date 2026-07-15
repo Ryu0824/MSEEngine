@@ -50,8 +50,8 @@ void EditorLayer::OnAttach()
 	MSE::Ref<MSE::VertexBuffer> vertexBuffer = MSE::VertexBuffer::Create(vertices, sizeof(vertices));
 
 	MSE::BufferLayout layout = {
-		{MSE::ShaderDataType::Float3,"POSITION"},
-		{MSE::ShaderDataType::Float4,"COLOR"},
+		{MSE::ShaderDataType::Float3, "POSITION"},
+		{MSE::ShaderDataType::Float4, "COLOR"},
 		{MSE::ShaderDataType::Float2, "TEXCOORD"}
 	};
 	vertexBuffer->SetLayout(layout);

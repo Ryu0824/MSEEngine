@@ -63,6 +63,8 @@ namespace MSE
 			return actor;
 		}
 
+		void OnViewportResize(uint32_t width, uint32_t height);
+
 	private:
 		std::vector<Ref<Actor>> m_Actors;
 	};

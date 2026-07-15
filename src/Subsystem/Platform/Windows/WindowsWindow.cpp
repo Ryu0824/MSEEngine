@@ -183,10 +183,6 @@ namespace MSE
 		m_WindowHandle = hwnd;
 
 		ShowWindow(hwnd, SW_SHOW);
-
-		m_Context = CreateScope<DirectX11Context>(static_cast<HWND>(m_WindowHandle));
-	
-		m_Context->Init();
 	}
 
 	void WindowsWindow::OnUpdate()
@@ -198,13 +194,17 @@ namespace MSE
 			TranslateMessage(&msg);
 			DispatchMessage(&msg);
 		}
-
-		if (m_Context)
-			m_Context->SwapBuffers();
 	}
 
 	void WindowsWindow::Shutdown()
 	{
 		DestroyWindow(static_cast<HWND>(m_WindowHandle));
+	}
+
+	NativeWindowInfo WindowsWindow::GetNativeWindow() const
+	{
+		NativeWindowInfo info;
+		info.WindowHandle = static_cast<HWND>(m_WindowHandle);
+		return info;
 	}
 }

@@ -84,9 +84,6 @@
     <ClInclude Include="Platform\Windows\WindowsWindow.h">
       <Filter>Platform\Windows</Filter>
     </ClInclude>
-    <ClInclude Include="Core\Window.h">
-      <Filter>Default</Filter>
-    </ClInclude>
     <ClInclude Include="EntryPoint.h">
       <Filter>Default</Filter>
     </ClInclude>
@@ -189,6 +186,12 @@
     <ClInclude Include="Vendor\imgui\imstb_truetype.h">
       <Filter>Vendor\imgui</Filter>
     </ClInclude>
+    <ClInclude Include="Core\NativeWindowInfo.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Window.h">
+      <Filter>Core</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -272,6 +275,10 @@
     <ClCompile Include="Vendor\imgui\imgui_widgets.cpp">
       <Filter>Vendor\imgui</Filter>
     </ClCompile>
+    <ClCompile Include="Renderer\GraphicsContext.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\Scene.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="cpp.hint" />

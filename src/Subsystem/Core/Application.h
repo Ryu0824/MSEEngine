@@ -1,6 +1,7 @@
 #pragma once
 #include "LayerStack.h"
 #include "Window.h"
+#include <Renderer/GraphicsContext.h>
 #include <Event/ApplicationEvent.h>
 #include <ImGui/ImGuiLayer.h>
 
@@ -29,6 +30,7 @@ namespace MSE
 
 	private:
 		Scope<Window> m_Window;
+		Scope<GraphicsContext> m_Context;
 		bool m_bRunning = true;
 		bool m_Minimized = false;
 		LayerStack m_LayerStack;

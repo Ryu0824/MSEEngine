@@ -1,6 +1,7 @@
 #pragma once
 #include "pch.h"
 #include <Event/Event.h>
+#include "NativeWindowInfo.h"
 
 namespace MSE
 {
@@ -34,6 +35,6 @@ namespace MSE
 
 		static Window* Create(const WindowProps& props = WindowProps());
 
-		virtual void* GetNativeWindow() = 0;
+		virtual NativeWindowInfo GetNativeWindow() const = 0;
 	};
 }

@@ -13,7 +13,7 @@ namespace MSE
 	};
 
 	static RenderData* s_Data = nullptr;
-
+		
 	void Renderer::Init()
 	{
 		if (!s_Data)
@@ -64,5 +64,10 @@ namespace MSE
 		vertexArray->Bind();
 
 		RenderCommand::DrawIndexed(vertexArray->GetIndexBuffer());
+	}
+
+	void Renderer::OnWindowResize(uint32_t width, uint32_t height)
+	{
+		
 	}
 }

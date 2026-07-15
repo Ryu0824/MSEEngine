@@ -19,13 +19,11 @@ namespace MSE
 		void SetVSync(bool enabled) override { m_Data.VSync = enabled; };
 		bool IsVSync() const override { return m_Data.VSync; }
 
-		inline virtual void* GetNativeWindow() override { return m_WindowHandle; }
+		virtual NativeWindowInfo GetNativeWindow() const override;
 
 	private:
 		virtual void Init(const WindowProps& props);
 		virtual void Shutdown();
-
-		Scope<GraphicsContext> m_Context;
 
 	private:
 		struct WindowData
