@@ -14,12 +14,15 @@ namespace MSE
 		TransformComponent() = default;
 		TransformComponent(const TransformComponent&) = default;
 		TransformComponent(const DirectX::XMFLOAT3& translation)
-			:Translation(translation){ }
+			:Translation(translation) {
+		}
 
 		DirectX::XMMATRIX GetTransform() const
 		{
 			return DirectX::XMMatrixScaling(Scale.x, Scale.y, Scale.z) *
-				DirectX::XMMatrixRotationRollPitchYaw(Rotation.x, Rotation.y, Rotation.z) *
+				DirectX::XMMatrixRotationRollPitchYaw(DirectX::XMConvertToRadians(Rotation.x),
+					DirectX::XMConvertToRadians(Rotation.y),
+					DirectX::XMConvertToRadians(Rotation.z)) *
 				DirectX::XMMatrixTranslation(Translation.x, Translation.y, Translation.z);
 		}
 

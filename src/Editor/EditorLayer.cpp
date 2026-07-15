@@ -58,12 +58,12 @@ void EditorLayer::OnAttach()
 	vertexArray->AddVertexBuffer(vertexBuffer);
 
 	uint32_t indices[] = {
-		 0,  3,  2,  2,  1,  0, 
-		 4,  7,  6,  6,  5,  4, 
-		 8, 11, 10, 10,  9,  8, 
-		12, 15, 14, 14, 13, 12, 
-		16, 19, 18, 18, 17, 16, 
-		20, 23, 22, 22, 21, 20  
+		 0,  3,  2,  2,  1,  0,
+		 4,  7,  6,  6,  5,  4,
+		 8, 11, 10, 10,  9,  8,
+		12, 15, 14, 14, 13, 12,
+		16, 19, 18, 18, 17, 16,
+		20, 23, 22, 22, 21, 20
 	};
 
 	MSE::Ref<MSE::IndexBuffer> indexBuffer = MSE::IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t));
@@ -78,8 +78,13 @@ void EditorLayer::OnAttach()
 	auto camTransform = m_Camera->AddComponent<MSE::TransformComponent>();
 	m_Camera->AddComponent<MSE::CameraComponent>();
 	camTransform->Translation.z = -10.0f;
-	
-	for (int y = -5; y < 5; y++)
+
+	m_Player = m_ActiveScene->CreateActor("Player");
+	m_Player->AddComponent<MSE::MeshComponent>(vertexArray, shader);
+	m_Player->AddComponent<MSE::TransformComponent>();
+
+	/// Test Code ///
+	/*for (int y = -5; y < 5; y++)
 	{
 		for (int x = -5; x < 5; x++)
 		{
@@ -87,15 +92,15 @@ void EditorLayer::OnAttach()
 			cube->AddComponent<MSE::MeshComponent>(vertexArray, shader);
 
 			auto transform = cube->AddComponent<MSE::TransformComponent>();
-			transform->Translation.x = (float)x * 1.5f; 
+			transform->Translation.x = (float)x * 1.5f;
 			transform->Translation.y = (float)y * 1.5f;
-			transform->Scale = { 0.8f, 0.8f, 0.8f }; 
+			transform->Scale = { 0.8f, 0.8f, 0.8f };
 
 
 			transform->Rotation.x = (float)x * 0.3f;
 			transform->Rotation.y = (float)y * 0.3f;
 		}
-	}
+	}*/
 }
 
 void EditorLayer::OnDetach()
@@ -133,7 +138,22 @@ void EditorLayer::OnImGuiRender()
 {
 	ImGui::Begin("Inspector");
 
-	ImGui::Text("Hello, Engine UI!");
+	if (m_Player)
+	{
+		ImGui::Text("Actor Name: Player");
+		ImGui::Separator();
+
+		auto transform = m_Player->GetComponent<MSE::TransformComponent>();
+
+		if (transform)
+		{
+			ImGui::DragFloat3("Position", &transform->Translation.x, 0.05f);
+
+			ImGui::DragFloat3("Rotation", &transform->Rotation.x, 1.0f);
+
+			ImGui::DragFloat3("Scale", &transform->Scale.x, 0.02f, 0.1f, 10.0f);
+		}
+	}
 
 	ImGui::End();
 }
