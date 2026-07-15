@@ -10,13 +10,40 @@ void EditorLayer::OnAttach()
 	MSE::Ref<MSE::VertexArray> vertexArray = MSE::VertexArray::Create();
 
 	float vertices[] = {
-		-0.5f,0.5f,0.0f, 1.0f,0.0f,0.0f,1.0f, 0.0f,0.0f,
+		-0.5f, -0.5f, -0.5f,   1.0f, 1.0f, 1.0f, 1.0f,   0.0f, 1.0f,
+		 0.5f, -0.5f, -0.5f,   1.0f, 1.0f, 1.0f, 1.0f,   1.0f, 1.0f,
+		 0.5f,  0.5f, -0.5f,   1.0f, 1.0f, 1.0f, 1.0f,   1.0f, 0.0f,
+		-0.5f,  0.5f, -0.5f,   1.0f, 1.0f, 1.0f, 1.0f,   0.0f, 0.0f,
 
-		0.5f, 0.5f,0.0f, 0.0,1.0f,0.0f,1.0f, 1.0f,0.0f,
+		// 뒷면 (Back)
+		 0.5f, -0.5f,  0.5f,   1.0f, 1.0f, 1.0f, 1.0f,   0.0f, 1.0f,
+		-0.5f, -0.5f,  0.5f,   1.0f, 1.0f, 1.0f, 1.0f,   1.0f, 1.0f,
+		-0.5f,  0.5f,  0.5f,   1.0f, 1.0f, 1.0f, 1.0f,   1.0f, 0.0f,
+		 0.5f,  0.5f,  0.5f,   1.0f, 1.0f, 1.0f, 1.0f,   0.0f, 0.0f,
 
-		0.5f,-0.5f,0.0f, 0.0f,0.0f,1.0f,1.0f, 1.0f,1.0f,
+		 // 왼쪽면 (Left)
+		 -0.5f, -0.5f,  0.5f,   1.0f, 1.0f, 1.0f, 1.0f,   0.0f, 1.0f,
+		 -0.5f, -0.5f, -0.5f,   1.0f, 1.0f, 1.0f, 1.0f,   1.0f, 1.0f,
+		 -0.5f,  0.5f, -0.5f,   1.0f, 1.0f, 1.0f, 1.0f,   1.0f, 0.0f,
+		 -0.5f,  0.5f,  0.5f,   1.0f, 1.0f, 1.0f, 1.0f,   0.0f, 0.0f,
 
-		-0.5f,-0.5f,0.0f, 0.0f,1.0f,1.0f,1.0f, 0.0f,1.0f
+		 // 오른쪽면 (Right)
+		  0.5f, -0.5f, -0.5f,   1.0f, 1.0f, 1.0f, 1.0f,   0.0f, 1.0f,
+		  0.5f, -0.5f,  0.5f,   1.0f, 1.0f, 1.0f, 1.0f,   1.0f, 1.0f,
+		  0.5f,  0.5f,  0.5f,   1.0f, 1.0f, 1.0f, 1.0f,   1.0f, 0.0f,
+		  0.5f,  0.5f, -0.5f,   1.0f, 1.0f, 1.0f, 1.0f,   0.0f, 0.0f,
+
+		  // 윗면 (Top)
+		  -0.5f,  0.5f, -0.5f,   1.0f, 1.0f, 1.0f, 1.0f,   0.0f, 1.0f,
+		   0.5f,  0.5f, -0.5f,   1.0f, 1.0f, 1.0f, 1.0f,   1.0f, 1.0f,
+		   0.5f,  0.5f,  0.5f,   1.0f, 1.0f, 1.0f, 1.0f,   1.0f, 0.0f,
+		  -0.5f,  0.5f,  0.5f,   1.0f, 1.0f, 1.0f, 1.0f,   0.0f, 0.0f,
+
+		  // 아랫면 (Bottom)
+		  -0.5f, -0.5f,  0.5f,   1.0f, 1.0f, 1.0f, 1.0f,   0.0f, 1.0f,
+		   0.5f, -0.5f,  0.5f,   1.0f, 1.0f, 1.0f, 1.0f,   1.0f, 1.0f,
+		   0.5f, -0.5f, -0.5f,   1.0f, 1.0f, 1.0f, 1.0f,   1.0f, 0.0f,
+		  -0.5f, -0.5f, -0.5f,   1.0f, 1.0f, 1.0f, 1.0f,   0.0f, 0.0f
 	};
 
 	MSE::Ref<MSE::VertexBuffer> vertexBuffer = MSE::VertexBuffer::Create(vertices, sizeof(vertices));
@@ -29,7 +56,15 @@ void EditorLayer::OnAttach()
 	vertexBuffer->SetLayout(layout);
 	vertexArray->AddVertexBuffer(vertexBuffer);
 
-	uint32_t indices[] = { 0,1,2,0,2,3 };
+	uint32_t indices[] = {
+		 0,  3,  2,  2,  1,  0, 
+		 4,  7,  6,  6,  5,  4, 
+		 8, 11, 10, 10,  9,  8, 
+		12, 15, 14, 14, 13, 12, 
+		16, 19, 18, 18, 17, 16, 
+		20, 23, 22, 22, 21, 20  
+	};
+
 	MSE::Ref<MSE::IndexBuffer> indexBuffer = MSE::IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t));
 	vertexArray->SetIndexBuffer(indexBuffer);
 
@@ -38,18 +73,28 @@ void EditorLayer::OnAttach()
 	m_Texture = MSE::Texture2D::Create("Assets/Textures/TestImage.png");
 	if (m_Texture) m_Texture->Bind(0);
 
-	m_CameraCB = MSE::ConstantBuffer::Create(sizeof(DirectX::XMMATRIX));
-	m_TransformCB = MSE::ConstantBuffer::Create(sizeof(DirectX::XMMATRIX));
-
-	m_Player = m_ActiveScene->CreateActor("Player");
-	m_Player->AddComponent<MSE::MeshComponent>(vertexArray, shader);
-	m_Player->AddComponent<MSE::TransformComponent>();
-
 	m_Camera = m_ActiveScene->CreateActor("Camera");
 	auto camTransform = m_Camera->AddComponent<MSE::TransformComponent>();
 	m_Camera->AddComponent<MSE::CameraComponent>();
+	camTransform->Translation.z = -10.0f;
 	
-	camTransform->Translation.z = -5.0f;	
+	for (int y = -5; y < 5; y++)
+	{
+		for (int x = -5; x < 5; x++)
+		{
+			auto cube = m_ActiveScene->CreateActor("Cube");
+			cube->AddComponent<MSE::MeshComponent>(vertexArray, shader);
+
+			auto transform = cube->AddComponent<MSE::TransformComponent>();
+			transform->Translation.x = (float)x * 1.5f; // 간격을 벌려서 배치
+			transform->Translation.y = (float)y * 1.5f;
+			transform->Scale = { 0.8f, 0.8f, 0.8f };    // 큐브 크기를 살짝 줄임
+
+			// 각자 다른 각도로 회전
+			transform->Rotation.x = (float)x * 0.3f;
+			transform->Rotation.y = (float)y * 0.3f;
+		}
+	}
 }
 
 void EditorLayer::OnDetach()
@@ -61,8 +106,6 @@ void EditorLayer::OnUpdate(MSE::Timestep ts)
 {
 	auto transform = m_Camera->GetComponent<MSE::TransformComponent>();
 	auto camera = m_Camera->GetComponent<MSE::CameraComponent>();
-
-	auto playerTransform = m_Player->GetComponent<MSE::TransformComponent>();
 
 	float moveSpeed = 2.0f;
 	float rotSpeed = 3.0f;
@@ -77,27 +120,12 @@ void EditorLayer::OnUpdate(MSE::Timestep ts)
 	if (MSE::Input::IsKeyPressed('Q')) transform->Rotation.z += rotSpeed * ts;
 	if (MSE::Input::IsKeyPressed('E')) transform->Rotation.z -= rotSpeed * ts;
 
-	DirectX::XMMATRIX CamViewMatrix = transform->GetCameraViewMatrix();
-	DirectX::XMMATRIX CamProjectionViewMatrix = camera->GetProjectionMatrix();
-
-	DirectX::XMMATRIX camtransposed = DirectX::XMMatrixTranspose(CamViewMatrix * CamProjectionViewMatrix);
-	DirectX::XMMATRIX playerTransposed = DirectX::XMMatrixTranspose(playerTransform->GetTransform());
-
-	m_CameraCB->SetData(&camtransposed, sizeof(DirectX::XMMATRIX));
-	m_CameraCB->Bind(0);
-
-	m_TransformCB->SetData(&playerTransposed, sizeof(DirectX::XMMATRIX));
-	m_TransformCB->Bind(1);
 
 	float clearColor[4] = { 0.2f,0.2f,0.2f,1.0f };
 	MSE::RenderCommand::SetClearColor(clearColor);
 	MSE::RenderCommand::Clear();
 
-	MSE::Renderer::BeginScene();
-
 	m_ActiveScene->OnUpdate(ts);
-
-	MSE::Renderer::EndScene();
 }
 
 void EditorLayer::OnEvent(MSE::Event& event)

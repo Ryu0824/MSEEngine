@@ -7,6 +7,7 @@ namespace MSE
 {
 	extern Microsoft::WRL::ComPtr<ID3D11DeviceContext> g_DeviceContext;
 	extern Microsoft::WRL::ComPtr<ID3D11RenderTargetView> g_RenderTargetView;
+	extern Microsoft::WRL::ComPtr<ID3D11DepthStencilView> g_DepthStencilView;
 
 	void DirectX11RendererAPI::SetClearColor(const float color[4])
 	{
@@ -19,9 +20,14 @@ namespace MSE
 	void DirectX11RendererAPI::Clear()
 	{
 		g_DeviceContext->ClearRenderTargetView(g_RenderTargetView.Get(), m_ClearColor);
+
+		if (g_DepthStencilView)
+		{
+			g_DeviceContext->ClearDepthStencilView(g_DepthStencilView.Get(), D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0);
+		}
 	}
 
-	void DirectX11RendererAPI::DrawIndexed(const std::shared_ptr<IndexBuffer>& indexBuffer)
+	void DirectX11RendererAPI::DrawIndexed(const Ref<IndexBuffer>& indexBuffer)
 	{
 		g_DeviceContext->DrawIndexed(indexBuffer->GetCount(), 0, 0);
 	}

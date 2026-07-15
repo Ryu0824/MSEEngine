@@ -47,6 +47,12 @@ namespace MSE
 			return nullptr;
 		}
 
+		template<typename T>
+		bool HasComponent() const
+		{
+			return m_ComponentMap.find(typeid(T)) != m_ComponentMap.end();
+		}
+
 	private:
 		std::string m_Name;
 		Scene* m_Scene = nullptr;

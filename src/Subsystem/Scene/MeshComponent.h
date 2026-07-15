@@ -16,13 +16,5 @@ namespace MSE
 		MeshComponent() = default;
 		MeshComponent(const Ref<VertexArray>& vertexArray, const Ref<Shader>& shader)
 			:m_VertexArray(vertexArray), m_Shader(shader) {}
-
-		virtual void OnUpdate(Timestep ts)override
-		{
-			if (m_VertexArray && m_Shader)
-			{
-				Renderer::Submit(m_Shader, m_VertexArray);
-			}
-		}
 	};
 }

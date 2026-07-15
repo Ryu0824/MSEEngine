@@ -1,7 +1,7 @@
-
 #include "pch.h"
 #include "Application.h"
 #include <chrono>
+#include <Renderer/Renderer.h>
 
 namespace MSE
 {
@@ -19,6 +19,8 @@ namespace MSE
 	Application::~Application()
 	{
 		m_Instance = nullptr;
+
+		Renderer::Shutdown();
 	}
 
 	void Application::OnEvent(Event& e)

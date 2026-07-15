@@ -16,9 +16,5 @@ private:
 
 	MSE::Ref<MSE::Actor> m_Player;
 	MSE::Ref<MSE::Actor> m_Camera;
-
-	MSE::Ref<MSE::ConstantBuffer> m_CameraCB;
-	MSE::Ref<MSE::ConstantBuffer> m_TransformCB;
-
 	MSE::Ref<MSE::Texture2D> m_Texture;
 };

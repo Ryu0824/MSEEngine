@@ -1,5 +1,6 @@
 #pragma once
 #include "Actor.h"
+#include "Components.h"
 #include <Core/Timestep.h>
 #include <vector>
 #include <memory>
@@ -17,6 +18,40 @@ namespace MSE
 			for (auto& actor : m_Actors)
 			{
 				actor->OnUpdate(ts);
+			}
+
+			Ref<CameraComponent> mainCamera = nullptr;
+			DirectX::XMMATRIX cameraViewProj;
+
+			for (auto& actor : m_Actors)
+			{
+				if (actor->HasComponent<CameraComponent>())
+				{
+					mainCamera = actor->GetComponent<CameraComponent>();
+					auto transform = actor->GetComponent<TransformComponent>();
+
+					DirectX::XMMATRIX view = transform->GetCameraViewMatrix();
+					DirectX::XMMATRIX proj = mainCamera->GetProjectionMatrix();
+					cameraViewProj = view * proj;
+					break;
+				}
+			}
+
+			if (mainCamera)
+			{
+				Renderer::BeginScene(cameraViewProj);
+
+				for (auto& actor : m_Actors)
+				{
+					if (actor->HasComponent<MeshComponent>() && actor->HasComponent<TransformComponent>())
+					{
+						auto mesh = actor->GetComponent<MeshComponent>();
+						auto transform = actor->GetComponent<TransformComponent>();
+						Renderer::Submit(mesh->m_Shader, mesh->m_VertexArray, transform->GetTransform());
+					}
+				}
+
+				Renderer::EndScene();
 			}
 		}
 

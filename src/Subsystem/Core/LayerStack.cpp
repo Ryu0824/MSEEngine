@@ -9,6 +9,7 @@ namespace MSE
 		{
 			layer->OnDetach();
 			delete layer;
+			layer = nullptr;
 		}
 	}
 

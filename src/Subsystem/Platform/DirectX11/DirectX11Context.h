@@ -24,10 +24,8 @@ namespace MSE
 		Microsoft::WRL::ComPtr<IDXGISwapChain> m_SwapChain;
 		Microsoft::WRL::ComPtr<ID3D11RenderTargetView> m_RenderTargetView;
 
-		std::shared_ptr<DirectX11VertexBuffer> m_VertexBuffer;
-		std::shared_ptr<DirectX11IndexBuffer> m_IndexBuffer;
-		std::shared_ptr<DirectX11Shader> m_Shader;
-
-		Microsoft::WRL::ComPtr<ID3D11InputLayout>m_InputLayout;
+		Microsoft::WRL::ComPtr<ID3D11Texture2D> m_DepthStencilBuffer;
+		Microsoft::WRL::ComPtr<ID3D11DepthStencilState> m_DepthStencilState;
+		Microsoft::WRL::ComPtr<ID3D11DepthStencilView> m_DepthStencilView;
 	};
 }
