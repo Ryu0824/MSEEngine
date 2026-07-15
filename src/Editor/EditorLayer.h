@@ -5,11 +5,11 @@ public:
 	EditorLayer() : MSE::Layer("EditorLayer") {}
 	virtual ~EditorLayer() = default;
 
-	virtual void OnAttach()						override;
-	virtual void OnDetach()						override;
-	virtual void OnUpdate(MSE::Timestep ts)		override;
-	virtual void OnImGuiRender() override {};
-	virtual void OnEvent(MSE::Event& event)		override;
+	virtual void OnAttach()	override;
+	virtual void OnDetach()	override;
+	virtual void OnUpdate(MSE::Timestep ts)	override;
+	virtual void OnImGuiRender() override;
+	virtual void OnEvent(MSE::Event& event) override;
 
 private:
 	MSE::Ref<MSE::Scene> m_ActiveScene;

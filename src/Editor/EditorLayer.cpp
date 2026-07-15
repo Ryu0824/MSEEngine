@@ -2,6 +2,7 @@
 #include "EditorLayer.h"
 #include <Scene/Components.h>
 #include <DirectXMath.h>
+#include <Vendor/imgui/imgui.h>
 
 void EditorLayer::OnAttach()
 {
@@ -86,11 +87,11 @@ void EditorLayer::OnAttach()
 			cube->AddComponent<MSE::MeshComponent>(vertexArray, shader);
 
 			auto transform = cube->AddComponent<MSE::TransformComponent>();
-			transform->Translation.x = (float)x * 1.5f; // 간격을 벌려서 배치
+			transform->Translation.x = (float)x * 1.5f; 
 			transform->Translation.y = (float)y * 1.5f;
-			transform->Scale = { 0.8f, 0.8f, 0.8f };    // 큐브 크기를 살짝 줄임
+			transform->Scale = { 0.8f, 0.8f, 0.8f }; 
 
-			// 각자 다른 각도로 회전
+
 			transform->Rotation.x = (float)x * 0.3f;
 			transform->Rotation.y = (float)y * 0.3f;
 		}
@@ -126,6 +127,15 @@ void EditorLayer::OnUpdate(MSE::Timestep ts)
 	MSE::RenderCommand::Clear();
 
 	m_ActiveScene->OnUpdate(ts);
+}
+
+void EditorLayer::OnImGuiRender()
+{
+	ImGui::Begin("Inspector");
+
+	ImGui::Text("Hello, Engine UI!");
+
+	ImGui::End();
 }
 
 void EditorLayer::OnEvent(MSE::Event& event)

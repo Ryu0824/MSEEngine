@@ -5,10 +5,17 @@
 #include <Event/KeyEvent.h>
 #include <Platform/DirectX11/DirectX11Context.h>
 
+extern LRESULT ImGui_ImplWin32_WndProcHandler(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
+
 namespace MSE
 {
+	HWND g_WindowHandle = nullptr;
+
 	LRESULT CALLBACK WindowsWindow::WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 	{
+		if (ImGui_ImplWin32_WndProcHandler(hwnd, msg, wParam, lParam))
+			return true;
+
 		WindowData* data = nullptr;
 
 		// 1. 창이 최초로 생성될 때(WM_NCCREATE), 숨겨둔 WindowData 포인터를 적재합니다.
@@ -122,7 +129,6 @@ namespace MSE
 			}
 		}
 
-		// 우리가 처리하지 않은 나머지 수백 개의 이벤트는 OS 기본 처리에 맡깁니다.
 		return DefWindowProc(hwnd, msg, wParam, lParam);
 	}
 
@@ -172,6 +178,8 @@ namespace MSE
 			&m_Data
 		);
 
+		g_WindowHandle = hwnd;
+
 		m_WindowHandle = hwnd;
 
 		ShowWindow(hwnd, SW_SHOW);
@@ -184,9 +192,8 @@ namespace MSE
 	void WindowsWindow::OnUpdate()
 	{
 		MSG msg;
-		HWND hwnd = static_cast<HWND>(m_WindowHandle);
-
-		while (PeekMessage(&msg, hwnd, 0, 0, PM_REMOVE))
+		
+		while (PeekMessage(&msg, nullptr, 0, 0, PM_REMOVE))
 		{
 			TranslateMessage(&msg);
 			DispatchMessage(&msg);

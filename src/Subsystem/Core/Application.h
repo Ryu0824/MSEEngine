@@ -2,6 +2,7 @@
 #include "LayerStack.h"
 #include "Window.h"
 #include <Event/ApplicationEvent.h>
+#include <ImGui/ImGuiLayer.h>
 
 namespace MSE
 {
@@ -32,6 +33,7 @@ namespace MSE
 		bool m_Minimized = false;
 		LayerStack m_LayerStack;
 		static Application* m_Instance;
+		ImGuiLayer* m_ImGuiLayer;
 	};
 
 	Application* CreateApplication();
