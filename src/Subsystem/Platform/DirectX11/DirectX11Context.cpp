@@ -51,13 +51,16 @@ namespace MSE
 			return;
 		}
 
-		Microsoft::WRL::ComPtr<ID3D11Texture2D> backbuffer;
-		m_SwapChain->GetBuffer(0, __uuidof(ID3D11Texture2D), (void**)&backbuffer);
-		m_Device->CreateRenderTargetView(backbuffer.Get(), nullptr, &m_RenderTargetView);
+		Microsoft::WRL::ComPtr<ID3D11Texture2D> backBuffer;
+		m_SwapChain->GetBuffer(0, __uuidof(ID3D11Texture2D), (void**)&backBuffer);
+		m_Device->CreateRenderTargetView(backBuffer.Get(), nullptr, &m_RenderTargetView);
+
+		D3D11_TEXTURE2D_DESC backBufferDesc = {};
+		backBuffer->GetDesc(&backBufferDesc);
 
 		D3D11_TEXTURE2D_DESC depthDesc = {};
-		depthDesc.Width = 1280;
-		depthDesc.Height = 720;
+		depthDesc.Width = backBufferDesc.Width;
+		depthDesc.Height = backBufferDesc.Height;
 		depthDesc.MipLevels = 1;
 		depthDesc.ArraySize = 1;
 		depthDesc.Format = DXGI_FORMAT_D24_UNORM_S8_UINT;
@@ -87,7 +90,7 @@ namespace MSE
 
 		std::cout << "[DirectX 11] 그래픽스 컨텍스트 초기화 성공!" << std::endl;
 
-		D3D11_VIEWPORT vp = { 0.0f, 0.0f, 1280.0f, 720.0f, 0.0f, 1.0f };
+		D3D11_VIEWPORT vp = { 0.0f, 0.0f, (float)backBufferDesc.Width, (float)backBufferDesc.Height, 0.0f, 1.0f };
 		m_DeviceContext->RSSetViewports(1, &vp);
 
 		m_DeviceContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
