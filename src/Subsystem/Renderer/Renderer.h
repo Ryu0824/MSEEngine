@@ -1,5 +1,5 @@
 #pragma once
-#include <DirectXMath.h>
+#include <Math/Math.h>
 #include <memory>
 
 namespace MSE
@@ -13,12 +13,12 @@ namespace MSE
 		static void Init();
 		static void Shutdown();
 
-		static void BeginScene(const DirectX::XMMATRIX& viewProjection);
+		static void BeginScene(const Matrix4& viewProjection);
 		static void EndScene();
 
 		static void Submit(const Ref<Shader>& shader,
-			const Ref<VertexArray>&  vertexArray,
-			const DirectX::XMMATRIX& transform);
+			const Ref<VertexArray>& vertexArray,
+			const Matrix4& transform);
 
 		static void OnWindowResize(uint32_t width, uint32_t height);
 	};

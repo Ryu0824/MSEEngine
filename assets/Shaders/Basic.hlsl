@@ -28,8 +28,8 @@ struct PS_Input
 PS_Input VS_Main(VS_Input vertex)
 {
     PS_Input vsOut;
-    vsOut.pos = mul(float4(vertex.pos, 1.0f), u_Transform);
-    vsOut.pos = mul(vsOut.pos, u_ViewProjection);
+    vsOut.pos = mul(u_Transform, float4(vertex.pos, 1.0f));
+    vsOut.pos = mul(u_ViewProjection, vsOut.pos);
     vsOut.col = vertex.col;
     vsOut.uv = vertex.uv;
     return vsOut;

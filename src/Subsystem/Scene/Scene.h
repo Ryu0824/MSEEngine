@@ -21,7 +21,7 @@ namespace MSE
 			}
 
 			Ref<CameraComponent> mainCamera = nullptr;
-			DirectX::XMMATRIX cameraViewProj;
+			Matrix4 cameraViewProj;
 
 			for (auto& actor : m_Actors)
 			{
@@ -30,9 +30,9 @@ namespace MSE
 					mainCamera = actor->GetComponent<CameraComponent>();
 					auto transform = actor->GetComponent<TransformComponent>();
 
-					DirectX::XMMATRIX view = transform->GetCameraViewMatrix();
-					DirectX::XMMATRIX proj = mainCamera->GetProjectionMatrix();
-					cameraViewProj = view * proj;
+					Matrix4 view = transform->GetCameraViewMatrix();
+					Matrix4 proj = mainCamera->GetProjectionMatrix();
+					cameraViewProj = proj * view;
 					break;
 				}
 			}

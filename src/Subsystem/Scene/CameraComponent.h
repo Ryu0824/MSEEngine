@@ -7,7 +7,7 @@ namespace MSE
 	class CameraComponent : public Component
 	{
 	public:
-		DirectX::XMMATRIX Projection;
+		Matrix4 Projection;
 		bool Primary = true;
 		float AspectRatio = 16.0f / 9.0f;
 
@@ -18,7 +18,7 @@ namespace MSE
 
 		virtual ~CameraComponent() = default;
 
-		DirectX::XMMATRIX GetProjectionMatrix()
+		Matrix4 GetProjectionMatrix()
 		{
 			return Projection;
 		}
@@ -35,11 +35,7 @@ namespace MSE
 	private:
 		void UpdateProjection()
 		{
-			Projection = DirectX::XMMatrixPerspectiveFovLH(
-				DirectX::XMConvertToRadians(45.0f),
-				AspectRatio,
-				0.1f, 1000.0f
-			);
+			Projection = Math::Perspective(Math::Radians(45.0f), AspectRatio, 0.1f, 1000.0f);
 		}
 	};
 }

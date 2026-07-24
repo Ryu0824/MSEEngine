@@ -1,35 +1,33 @@
 #pragma once
 #include <Scene/Component.h>
-#include <DirectXMath.h>
+#include <Math/Math.h>
 
 namespace MSE
 {
 	class TransformComponent : public Component
 	{
 	public:
-		DirectX::XMFLOAT3 Translation = { 0.0f,0.0f,0.0f };
-		DirectX::XMFLOAT3 Rotation = { 0.0f,0.0f,0.0f };
-		DirectX::XMFLOAT3 Scale = { 1.0f,1.0f,1.0f };
+		Vector3 Translation = { 0.0f,0.0f,0.0f };
+		Vector3 Rotation = { 0.0f,0.0f,0.0f };
+		Vector3 Scale = { 1.0f,1.0f,1.0f };
 
 		TransformComponent() = default;
 		TransformComponent(const TransformComponent&) = default;
-		TransformComponent(const DirectX::XMFLOAT3& translation)
+		TransformComponent(const Vector3& translation)
 			:Translation(translation) {
 		}
 
-		DirectX::XMMATRIX GetTransform() const
+		Matrix4 GetTransform() const
 		{
-			return DirectX::XMMatrixScaling(Scale.x, Scale.y, Scale.z) *
-				DirectX::XMMatrixRotationRollPitchYaw(DirectX::XMConvertToRadians(Rotation.x),
-					DirectX::XMConvertToRadians(Rotation.y),
-					DirectX::XMConvertToRadians(Rotation.z)) *
-				DirectX::XMMatrixTranslation(Translation.x, Translation.y, Translation.z);
+			Matrix4 rotation = Math::ToMat4(Math::Quat(Vector3(Math::Radians(Rotation.x), Math::Radians(Rotation.y), Math::Radians(Rotation.z))));
+
+			return Math::Translate(Matrix4(1.0f), Translation) * rotation * Math::Scale(Matrix4(1.0f), Scale);
 		}
 
-		DirectX::XMMATRIX GetCameraViewMatrix() const
+		Matrix4 GetCameraViewMatrix() const
 		{
-			return DirectX::XMMatrixTranslation(-Translation.x, -Translation.y, -Translation.z) *
-				DirectX::XMMatrixTranspose(DirectX::XMMatrixRotationRollPitchYaw(Rotation.x, Rotation.y, Rotation.z));
+			return Math::Transpose(Math::ToMat4(Math::Quat(Vector3(Math::Radians(Rotation.x), Math::Radians(Rotation.y), Math::Radians(Rotation.z))))) * 
+				Math::Translate(Matrix4(1.0f), Vector3(-Translation.x, -Translation.y, -Translation.z));
 		}
 	};
 }

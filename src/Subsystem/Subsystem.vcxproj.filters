@@ -43,6 +43,12 @@
     <Filter Include="ImGui">
       <UniqueIdentifier>{54eeffa2-8fdb-4f72-ac51-4c9da0820ddb}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Vendor\glm">
+      <UniqueIdentifier>{d3114a02-f09d-46ea-bd43-834f84ad4445}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Math">
+      <UniqueIdentifier>{79f59147-58aa-42d0-b2bb-6f3c58acb8b0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
@@ -191,6 +197,78 @@
     </ClInclude>
     <ClInclude Include="Core\Window.h">
       <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Vendor\glm\common.hpp">
+      <Filter>Vendor\glm</Filter>
+    </ClInclude>
+    <ClInclude Include="Vendor\glm\exponential.hpp">
+      <Filter>Vendor\glm</Filter>
+    </ClInclude>
+    <ClInclude Include="Vendor\glm\ext.hpp">
+      <Filter>Vendor\glm</Filter>
+    </ClInclude>
+    <ClInclude Include="Vendor\glm\fwd.hpp">
+      <Filter>Vendor\glm</Filter>
+    </ClInclude>
+    <ClInclude Include="Vendor\glm\geometric.hpp">
+      <Filter>Vendor\glm</Filter>
+    </ClInclude>
+    <ClInclude Include="Vendor\glm\glm.hpp">
+      <Filter>Vendor\glm</Filter>
+    </ClInclude>
+    <ClInclude Include="Vendor\glm\integer.hpp">
+      <Filter>Vendor\glm</Filter>
+    </ClInclude>
+    <ClInclude Include="Vendor\glm\mat2x2.hpp">
+      <Filter>Vendor\glm</Filter>
+    </ClInclude>
+    <ClInclude Include="Vendor\glm\mat2x3.hpp">
+      <Filter>Vendor\glm</Filter>
+    </ClInclude>
+    <ClInclude Include="Vendor\glm\mat2x4.hpp">
+      <Filter>Vendor\glm</Filter>
+    </ClInclude>
+    <ClInclude Include="Vendor\glm\mat3x2.hpp">
+      <Filter>Vendor\glm</Filter>
+    </ClInclude>
+    <ClInclude Include="Vendor\glm\mat3x3.hpp">
+      <Filter>Vendor\glm</Filter>
+    </ClInclude>
+    <ClInclude Include="Vendor\glm\mat3x4.hpp">
+      <Filter>Vendor\glm</Filter>
+    </ClInclude>
+    <ClInclude Include="Vendor\glm\mat4x2.hpp">
+      <Filter>Vendor\glm</Filter>
+    </ClInclude>
+    <ClInclude Include="Vendor\glm\mat4x3.hpp">
+      <Filter>Vendor\glm</Filter>
+    </ClInclude>
+    <ClInclude Include="Vendor\glm\mat4x4.hpp">
+      <Filter>Vendor\glm</Filter>
+    </ClInclude>
+    <ClInclude Include="Vendor\glm\matrix.hpp">
+      <Filter>Vendor\glm</Filter>
+    </ClInclude>
+    <ClInclude Include="Vendor\glm\packing.hpp">
+      <Filter>Vendor\glm</Filter>
+    </ClInclude>
+    <ClInclude Include="Vendor\glm\trigonometric.hpp">
+      <Filter>Vendor\glm</Filter>
+    </ClInclude>
+    <ClInclude Include="Vendor\glm\vec2.hpp">
+      <Filter>Vendor\glm</Filter>
+    </ClInclude>
+    <ClInclude Include="Vendor\glm\vec3.hpp">
+      <Filter>Vendor\glm</Filter>
+    </ClInclude>
+    <ClInclude Include="Vendor\glm\vec4.hpp">
+      <Filter>Vendor\glm</Filter>
+    </ClInclude>
+    <ClInclude Include="Vendor\glm\vector_relational.hpp">
+      <Filter>Vendor\glm</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\Math.h">
+      <Filter>Math</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
