@@ -153,6 +153,8 @@
     </Manifest>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Asset\AssetManager.h" />
+    <ClInclude Include="Asset\Resource.h" />
     <ClInclude Include="Base.h" />
     <ClInclude Include="Core\Application.h" />
     <ClInclude Include="Core\Input.h" />
@@ -194,6 +196,7 @@
     <ClInclude Include="Scene\TransformComponent.h" />
     <ClInclude Include="Singleton.h" />
     <ClInclude Include="Subsystem.h" />
+    <ClInclude Include="Utils\StringUtils.h" />
     <ClInclude Include="Vendor\glm\common.hpp" />
     <ClInclude Include="Vendor\glm\exponential.hpp" />
     <ClInclude Include="Vendor\glm\ext.hpp" />
@@ -228,6 +231,7 @@
     <ClInclude Include="Vendor\stb_image\stb_image.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Asset\AssetManager.cpp" />
     <ClCompile Include="Core\Application.cpp" />
     <ClCompile Include="Core\LayerStack.cpp" />
     <ClCompile Include="ImGui\ImGuiLayer.cpp" />

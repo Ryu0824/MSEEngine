@@ -1,10 +1,11 @@
 #pragma once
 #include <string>
 #include <Renderer/Buffer.h>
+#include <Asset/Resource.h>
 
 namespace MSE
 {
-	class Shader
+	class Shader : public Resource
 	{
 	public:
 		virtual ~Shader() = default;
@@ -14,6 +15,6 @@ namespace MSE
 
 		virtual void BindLayout(const BufferLayout& layout) = 0;
 
-		static Ref<Shader> Create(const std::wstring& filepath);
+		static Ref<Shader> Create(const std::string& filepath);
 	};
 }

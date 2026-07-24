@@ -14,12 +14,10 @@ namespace MSE {
         }
 
     protected:
-        // 직접 생성할 수 없도록 protected 처리
         KeyEvent(int keycode) : m_KeyCode(keycode) {}
         int m_KeyCode;
     };
 
-    // 1. 키 눌림 (반복 입력 포함)
     class KeyPressedEvent : public KeyEvent
     {
     public:
@@ -44,7 +42,6 @@ namespace MSE {
         int m_RepeatCount;
     };
 
-    // 2. 키 뗌
     class KeyReleasedEvent : public KeyEvent
     {
     public:
@@ -62,7 +59,6 @@ namespace MSE {
         virtual const char* GetName() const override { return "KeyReleased"; }
     };
 
-    // 3. 문자 타이핑 (대소문자, 특수문자 등 실제 텍스트 입력용)
     class KeyTypedEvent : public KeyEvent
     {
     public:

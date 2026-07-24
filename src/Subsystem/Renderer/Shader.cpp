@@ -5,7 +5,7 @@
 
 namespace MSE
 {
-	Ref<Shader> Shader::Create(const std::wstring& filepath)
+	Ref<Shader> Shader::Create(const std::string& filepath)
 	{
 		switch (RendererAPI::GetAPI())
 		{

@@ -2,6 +2,7 @@
 #include "DirectX11Shader.h"
 #include <iostream>
 #include <d3dcompiler.h>
+#include <Utils/StringUtils.h>
 
 namespace MSE
 {
@@ -24,9 +25,11 @@ namespace MSE
 		return DXGI_FORMAT_UNKNOWN;
 	}
 
-	DirectX11Shader::DirectX11Shader(const std::wstring& filepath)
+	DirectX11Shader::DirectX11Shader(const std::string& filepath)
 	{
 		Microsoft::WRL::ComPtr<ID3DBlob> psBlob, errorBlob;
+		std::wstring wideFilepath = Utils::ToWideString(filepath);
+
 
 		UINT compileFlags = D3DCOMPILE_ENABLE_STRICTNESS;
 #ifdef _DEBUG
@@ -34,7 +37,7 @@ namespace MSE
 #endif
 
 		HRESULT hr = D3DCompileFromFile(
-			filepath.c_str(), nullptr, D3D_COMPILE_STANDARD_FILE_INCLUDE,
+			wideFilepath.c_str(), nullptr, D3D_COMPILE_STANDARD_FILE_INCLUDE,
 			"VS_Main", "vs_5_0", compileFlags, 0, &m_VSBlob, &errorBlob
 		);
 
@@ -43,13 +46,13 @@ namespace MSE
 			if (errorBlob)
 				std::cout << "[Shader Error] " << (char*)errorBlob->GetBufferPointer() << std::endl;
 			else
-				std::cout << "[Shader Error] 파일을 찾을 수 없습니다 : " << std::string(filepath.begin(), filepath.end()) << std::endl;
+				std::cout << "[Shader Error] Filepath is Wrong! " << filepath << std::endl;
 			return;
 		}
 		g_Device->CreateVertexShader(m_VSBlob->GetBufferPointer(), m_VSBlob->GetBufferSize(), nullptr, &m_VertexShader);
 
 		hr = D3DCompileFromFile(
-			filepath.c_str(), nullptr, D3D_COMPILE_STANDARD_FILE_INCLUDE,
+			wideFilepath.c_str(), nullptr, D3D_COMPILE_STANDARD_FILE_INCLUDE,
 			"PS_Main", "ps_5_0", compileFlags, 0, &psBlob, &errorBlob
 		);
 

@@ -18,20 +18,17 @@ namespace MSE
 
 		WindowData* data = nullptr;
 
-		// 1. 창이 최초로 생성될 때(WM_NCCREATE), 숨겨둔 WindowData 포인터를 적재합니다.
 		if (msg == WM_NCCREATE)
 		{
 			CREATESTRUCT* pCreate = reinterpret_cast<CREATESTRUCT*>(lParam);
 			data = static_cast<WindowData*>(pCreate->lpCreateParams);
 			SetWindowLongPtr(hwnd, GWLP_USERDATA, reinterpret_cast<LONG_PTR>(data));
 		}
-		// 2. 그 이후의 모든 이벤트에서는 메모리에서 포인터를 꺼내옵니다.
 		else
 		{
 			data = reinterpret_cast<WindowData*>(GetWindowLongPtr(hwnd, GWLP_USERDATA));
 		}
 
-		// 3. 포인터가 정상적으로 있다면 우리가 만든 이벤트 시스템으로 연결합니다.
 		if (data)
 		{
 			switch (msg)
@@ -39,8 +36,8 @@ namespace MSE
 			case WM_CLOSE:
 			{
 				WindowCloseEvent event;
-				data->EventCallback(event); // Application으로 이벤트 발사!
-				return 0; // 우리가 처리했으니 OS는 개입하지 말라고 알림
+				data->EventCallback(event); 
+				return 0; 
 			}
 			case WM_SIZE:
 			{
@@ -61,6 +58,7 @@ namespace MSE
 
 				KeyPressedEvent event(keycode, repeatCount);
 				data->EventCallback(event);
+				break;
 			}
 
 			case WM_KEYUP:
@@ -165,7 +163,7 @@ namespace MSE
 
 		RegisterClassEx(&wc);
 
-		// 임시조치
+		// Temp
 		std::wstring wTitle(m_Data.Title.begin(), m_Data.Title.end());
 
 		HWND hwnd = CreateWindowEx(

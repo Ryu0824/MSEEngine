@@ -1,5 +1,8 @@
 #pragma once
 
+#pragma warning(push)
+#pragma warning(disable: 26495)
+
 #define GLM_FORCE_INTRINSICS
 #define GLM_FORCE_LEFT_HANDED        
 #define GLM_FORCE_DEPTH_ZERO_TO_ONE  
@@ -9,6 +12,8 @@
 
 #define GLM_ENABLE_EXPERIMENTAL
 #include <Vendor/glm/gtx/quaternion.hpp>
+
+#pragma warning(pop)
 
 namespace MSE {
 	using Vector2 = glm::vec2;

@@ -1,8 +1,8 @@
 #include "pch.h"
 #include "EditorLayer.h"
 #include <Scene/Components.h>
-#include <DirectXMath.h>
 #include <Vendor/imgui/imgui.h>
+#include <Asset/AssetManager.h>
 
 void EditorLayer::OnAttach()
 {
@@ -16,31 +16,26 @@ void EditorLayer::OnAttach()
 		 0.5f,  0.5f, -0.5f,   1.0f, 1.0f, 1.0f, 1.0f,   1.0f, 0.0f,
 		-0.5f,  0.5f, -0.5f,   1.0f, 1.0f, 1.0f, 1.0f,   0.0f, 0.0f,
 
-		// 뒷면 (Back)
 		 0.5f, -0.5f,  0.5f,   1.0f, 1.0f, 1.0f, 1.0f,   0.0f, 1.0f,
 		-0.5f, -0.5f,  0.5f,   1.0f, 1.0f, 1.0f, 1.0f,   1.0f, 1.0f,
 		-0.5f,  0.5f,  0.5f,   1.0f, 1.0f, 1.0f, 1.0f,   1.0f, 0.0f,
 		 0.5f,  0.5f,  0.5f,   1.0f, 1.0f, 1.0f, 1.0f,   0.0f, 0.0f,
 
-		 // 왼쪽면 (Left)
 		 -0.5f, -0.5f,  0.5f,   1.0f, 1.0f, 1.0f, 1.0f,   0.0f, 1.0f,
 		 -0.5f, -0.5f, -0.5f,   1.0f, 1.0f, 1.0f, 1.0f,   1.0f, 1.0f,
 		 -0.5f,  0.5f, -0.5f,   1.0f, 1.0f, 1.0f, 1.0f,   1.0f, 0.0f,
 		 -0.5f,  0.5f,  0.5f,   1.0f, 1.0f, 1.0f, 1.0f,   0.0f, 0.0f,
 
-		 // 오른쪽면 (Right)
 		  0.5f, -0.5f, -0.5f,   1.0f, 1.0f, 1.0f, 1.0f,   0.0f, 1.0f,
 		  0.5f, -0.5f,  0.5f,   1.0f, 1.0f, 1.0f, 1.0f,   1.0f, 1.0f,
 		  0.5f,  0.5f,  0.5f,   1.0f, 1.0f, 1.0f, 1.0f,   1.0f, 0.0f,
 		  0.5f,  0.5f, -0.5f,   1.0f, 1.0f, 1.0f, 1.0f,   0.0f, 0.0f,
 
-		  // 윗면 (Top)
 		  -0.5f,  0.5f, -0.5f,   1.0f, 1.0f, 1.0f, 1.0f,   0.0f, 1.0f,
 		   0.5f,  0.5f, -0.5f,   1.0f, 1.0f, 1.0f, 1.0f,   1.0f, 1.0f,
 		   0.5f,  0.5f,  0.5f,   1.0f, 1.0f, 1.0f, 1.0f,   1.0f, 0.0f,
 		  -0.5f,  0.5f,  0.5f,   1.0f, 1.0f, 1.0f, 1.0f,   0.0f, 0.0f,
 
-		  // 아랫면 (Bottom)
 		  -0.5f, -0.5f,  0.5f,   1.0f, 1.0f, 1.0f, 1.0f,   0.0f, 1.0f,
 		   0.5f, -0.5f,  0.5f,   1.0f, 1.0f, 1.0f, 1.0f,   1.0f, 1.0f,
 		   0.5f, -0.5f, -0.5f,   1.0f, 1.0f, 1.0f, 1.0f,   1.0f, 0.0f,
@@ -69,9 +64,9 @@ void EditorLayer::OnAttach()
 	MSE::Ref<MSE::IndexBuffer> indexBuffer = MSE::IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t));
 	vertexArray->SetIndexBuffer(indexBuffer);
 
-	MSE::Ref<MSE::Shader> shader = MSE::Shader::Create(L"Assets/Shaders/Basic.hlsl");
+	MSE::Ref<MSE::Shader> shader = MSE::AssetManager::GetResource<MSE::Shader>("Assets/Shaders/Basic.hlsl");
 
-	m_Texture = MSE::Texture2D::Create("Assets/Textures/TestImage.png");
+	m_Texture = MSE::AssetManager::GetResource<MSE::Texture2D>("Assets/Textures/TestImage.png");
 	if (m_Texture) m_Texture->Bind(0);
 
 	m_Camera = m_ActiveScene->CreateActor("Camera");

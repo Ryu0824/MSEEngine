@@ -1,10 +1,11 @@
 #pragma once
 #include <string>
 #include <Base.h>
+#include <Asset/Resource.h>
 
 namespace MSE
 {
-	class Texture
+	class Texture : public Resource
 	{
 	public:
 		virtual ~Texture() = default;

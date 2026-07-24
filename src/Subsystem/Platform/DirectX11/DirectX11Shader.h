@@ -9,7 +9,7 @@ namespace MSE
 	class DirectX11Shader : public Shader
 	{
 	public:
-		DirectX11Shader(const std::wstring& filepath);
+		DirectX11Shader(const std::string& filepath);
 		virtual ~DirectX11Shader() = default;
 
 		virtual void Bind() const override;

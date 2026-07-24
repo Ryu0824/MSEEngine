@@ -49,6 +49,12 @@
     <Filter Include="Math">
       <UniqueIdentifier>{79f59147-58aa-42d0-b2bb-6f3c58acb8b0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Asset">
+      <UniqueIdentifier>{a3d001b7-a875-458c-8225-66e69a0dbf57}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utils">
+      <UniqueIdentifier>{3a8c92a3-e460-4614-98d7-0fa155ba1fdf}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
@@ -270,6 +276,15 @@
     <ClInclude Include="Math\Math.h">
       <Filter>Math</Filter>
     </ClInclude>
+    <ClInclude Include="Asset\AssetManager.h">
+      <Filter>Asset</Filter>
+    </ClInclude>
+    <ClInclude Include="Asset\Resource.h">
+      <Filter>Asset</Filter>
+    </ClInclude>
+    <ClInclude Include="Utils\StringUtils.h">
+      <Filter>Utils</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -357,6 +372,9 @@
       <Filter>Renderer</Filter>
     </ClCompile>
     <ClCompile Include="Scene\Scene.cpp" />
+    <ClCompile Include="Asset\AssetManager.cpp">
+      <Filter>Asset</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="cpp.hint" />

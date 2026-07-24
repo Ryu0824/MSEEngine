@@ -12,5 +12,6 @@ namespace MSE
 		case RendererAPI::API::None: return nullptr;
 		case RendererAPI::API::DirectX11: return CreateRef<DirectX11Texture2D>(path);
 		}
+		return nullptr;
 	}
 }

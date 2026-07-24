@@ -20,7 +20,7 @@ namespace MSE
 		:m_WindowHandle(windowHandle)
 	{
 		if (!m_WindowHandle)
-			std::cout << "[DX11 Error] 윈도우 핸들이 null입니다.!" << std::endl;
+			std::cout << "[DX11 Error] Window Handle is Null" << std::endl;
 	}
 
 	void DirectX11Context::Init()
@@ -47,7 +47,7 @@ namespace MSE
 
 		if (FAILED(hr))
 		{
-			std::cout << "[DX11 Error] 디바이스 및 스왑체인 생성 실패!" << std::endl;
+			std::cout << "[DX11 Error] Device and Swapchain Initialized Failed" << std::endl;
 			return;
 		}
 
@@ -88,14 +88,12 @@ namespace MSE
 
 		m_DeviceContext->OMSetRenderTargets(1, m_RenderTargetView.GetAddressOf(), m_DepthStencilView.Get());
 
-		std::cout << "[DirectX 11] 그래픽스 컨텍스트 초기화 성공!" << std::endl;
-
 		D3D11_VIEWPORT vp = { 0.0f, 0.0f, (float)backBufferDesc.Width, (float)backBufferDesc.Height, 0.0f, 1.0f };
 		m_DeviceContext->RSSetViewports(1, &vp);
 
 		m_DeviceContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
 
-		std::cout << "[DirectX 11] 순수 그래픽스 컨텍스트 초기화 성공!" << std::endl;
+		std::cout << "[DirectX 11] Graphics Context Initialized Successed!" << std::endl;
 	}
 
 	void DirectX11Context::SwapBuffers()
